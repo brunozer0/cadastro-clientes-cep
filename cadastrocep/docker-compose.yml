@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: desafio_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: desafio_cep
+      MYSQL_ROOT_PASSWORD: brunoadm@2023
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  wiremock:
+    image: wiremock/wiremock:3.5.4
+    container_name: desafio_wiremock
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./wiremock:/home/wiremock
+
+volumes:
+  mysql_data:
